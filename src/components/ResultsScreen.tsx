@@ -1,6 +1,10 @@
 import { useState } from "react";
-import svgPaths from "../imports/svg-75cmip4a72";
-import { X } from "lucide-react";
+import svgPaths from "../imports/editIconPaths";
+import { X, Save, Share2, Download, Music2, Sparkles, BarChart3 } from "lucide-react";
+import { SecondaryButton, IconButton } from "./ui/Buttons";
+import AppHeader from "./AppHeader";
+import PageHeader from "./PageHeader";
+import Breadcrumbs from "./Breadcrumbs";
 
 interface ResultsData {
   instruments: string[];
@@ -8,117 +12,76 @@ interface ResultsData {
   difficulty: string;
 }
 
-function Music() {
+function Refresh() {
   return (
     <div
-      className="relative shrink-0 size-[100.416px]"
-      data-name="Music"
+      className="relative shrink-0 size-[20px] md:size-[22px]"
+      data-name="Refresh Cw"
     >
       <svg
         className="block size-full"
         fill="none"
         preserveAspectRatio="none"
-        viewBox="0 0 101 101"
+        viewBox="0 0 51 51"
       >
-        <g id="Music">
+        <g id="Refresh Cw">
           <path
-            d={svgPaths.p3abf3380}
+            d="M46.7199 8.53564V20.7901H34.4654"
             id="Icon"
-            stroke="url(#paint0_linear_4_213)"
+            stroke="var(--stroke-0, #1E1E1E)"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth="8.36804"
+            strokeWidth="4.18402"
+          />
+          <path
+            d="M4.22583 41.9176V29.6632H16.4803"
+            id="Icon_2"
+            stroke="var(--stroke-0, #1E1E1E)"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="4.18402"
+          />
+          <path
+            d="M8.32227 18.6622C9.02661 16.3046 10.2878 14.1501 12.0036 12.3686C13.7193 10.5871 15.8386 9.23009 18.1743 8.41377C20.51 7.59745 23.0005 7.34389 25.4376 7.67299C27.8747 8.00208 30.1917 8.90503 32.2017 10.3086L46.72 20.7904M4.22583 29.6632L18.7441 40.145C20.7541 41.5485 23.0711 42.4515 25.5082 42.7806C27.9453 43.1097 30.4358 42.8561 32.7715 42.0398C35.1072 41.2234 37.2265 39.8665 38.9422 38.085C40.658 36.3034 41.9192 34.149 42.6235 31.7914"
+            id="Icon_3"
+            stroke="var(--stroke-0, #1E1E1E)"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="4.18402"
           />
         </g>
-        <defs>
-          <linearGradient
-            gradientUnits="userSpaceOnUse"
-            id="paint0_linear_4_213"
-            x1="50.2082"
-            x2="50.2082"
-            y1="12.5521"
-            y2="87.8644"
-          >
-            <stop stopColor="#E76D57" />
-            <stop offset="1" stopColor="#813D31" />
-          </linearGradient>
-        </defs>
       </svg>
     </div>
   );
 }
 
-function Frame() {
-  return (
-    <div className="absolute content-stretch flex gap-[33.891px] h-[96.232px] items-center left-1/2 top-[29.29px] translate-x-[-50%] w-[824.252px]">
-      <p className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] relative shrink-0 text-[#201315] text-[67.781px] text-nowrap whitespace-pre">
-        <span>{`Here is your `}</span>
-        <span
-          className="bg-clip-text bg-gradient-to-r from-[#201315] to-[#e76d57]"
-          style={{ WebkitTextFillColor: "transparent" }}
-        >
-          harmony!
-        </span>
-      </p>
-      <Music />
-    </div>
-  );
-}
-
-function Frame2({
-  projectName,
-  isEditing,
-  onEdit,
-  onSave,
-  onChange,
+function Frame6({
+  instruments,
+  styles,
+  difficulty,
+  onRegenerate,
 }: {
-  projectName: string;
-  isEditing: boolean;
-  onEdit: () => void;
-  onSave: () => void;
-  onChange: (value: string) => void;
+  instruments: string[];
+  styles: string[];
+  difficulty: string;
+  onRegenerate: () => void;
 }) {
   return (
-    <div className="content-stretch flex gap-[25.104px] items-center relative shrink-0">
-      {isEditing ? (
-        <input
-          type="text"
-          value={projectName}
-          onChange={(e) => onChange(e.target.value)}
-          onBlur={onSave}
-          onKeyDown={(e) => e.key === "Enter" && onSave()}
-          autoFocus
-          className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] text-[53.555px] text-black text-center bg-transparent border-b-4 border-[#e76d57] outline-none px-4"
-        />
-      ) : (
-        <>
-          <p className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] relative shrink-0 text-[53.555px] text-black text-center text-nowrap whitespace-pre">
-            {projectName}
+    <div className="flex flex-col gap-3.5 flex-1 items-start w-full">
+      <TagSection title="Instruments" tags={instruments} />
+      <TagSection title="Style" tags={styles} />
+      <TagSection title="Difficulty" tags={[difficulty]} />
+      <div className="mt-1.5">
+        <div
+          onClick={onRegenerate}
+          className="border-solid border-[#201315] bg-[#f8f3eb] content-stretch flex py-2 px-4 gap-2 items-center shrink-0 rounded-[12px] border-[2.5px] cursor-pointer hover:bg-[#e5ddd5] hover:scale-105 transition-all active:scale-95"
+        >
+          <p className="font-['Figtree:SemiBold',_sans-serif] font-semibold leading-[normal] relative shrink-0 text-[#201315] text-[13px] md:text-[14px] lg:text-[15px] text-nowrap whitespace-pre">
+            Regenerate
           </p>
-          <div
-            className="relative shrink-0 size-[50.208px] cursor-pointer hover:opacity-70 transition-opacity"
-            onClick={onEdit}
-          >
-            <svg
-              className="block size-full"
-              fill="none"
-              preserveAspectRatio="none"
-              viewBox="0 0 51 51"
-            >
-              <g id="Edit 2">
-                <path
-                  d={svgPaths.pf9e1280}
-                  id="Icon"
-                  stroke="var(--stroke-0, #1E1E1E)"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="4.18402"
-                />
-              </g>
-            </svg>
-          </div>
-        </>
-      )}
+          <Refresh />
+        </div>
+      </div>
     </div>
   );
 }
@@ -126,12 +89,12 @@ function Frame2({
 function Maximize({ onClick }: { onClick: () => void }) {
   return (
     <div
-      className="absolute left-[686.18px] size-[50.208px] top-[33.47px] cursor-pointer hover:opacity-70 transition-opacity"
+      className="absolute right-4 top-4 size-[36px] md:size-[40px] cursor-pointer hover:opacity-70 transition-opacity bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md"
       data-name="Maximize 2"
       onClick={onClick}
     >
       <svg
-        className="block size-full"
+        className="block size-[24px] md:size-[28px]"
         fill="none"
         preserveAspectRatio="none"
         viewBox="0 0 51 51"
@@ -156,26 +119,45 @@ function ExpandedMusicPlayer({
 }: {
   onClose: () => void;
 }) {
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = 3; // Number of pages in the sheet music
+
   return (
     <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-8">
-      <div className="bg-[#f8f3eb] rounded-[54.392px] w-full max-w-6xl h-[80vh] relative shadow-2xl">
-        <button
-          onClick={onClose}
-          className="absolute right-8 top-8 p-3 hover:bg-[#e5ddd5] rounded-full transition-colors"
-        >
-          <X size={32} className="text-[#1e1e1e]" />
-        </button>
-        <div className="flex items-center justify-center h-full">
+      <div className="bg-[#f8f3eb] rounded-[54.392px] w-full max-w-6xl h-[80vh] relative shadow-2xl flex flex-col">
+        <div className="absolute right-8 top-8">
+          <IconButton onClick={onClose} size="lg" aria-label="Close expanded view">
+            <X size={32} className="text-[#1e1e1e]" />
+          </IconButton>
+        </div>
+        <div className="flex-1 flex items-center justify-center overflow-hidden">
           <div className="text-center">
-            <p className="font-['Figtree:Bold',_sans-serif] text-[#201315] text-[48px] mb-4">
+            <p className="font-['Figtree:Bold',_sans-serif] text-[#201315] text-[32px] mb-4">
               Harmony Sheet Music Preview
             </p>
-            <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[24px]">
+            <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[18px] mb-2">
+              Page {currentPage + 1} of {totalPages}
+            </p>
+            <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[18px]">
               Sheet music content would appear here
             </p>
           </div>
         </div>
-        <Frame15 />
+        {/* Pagination dots at bottom */}
+        <div className="pb-8 flex justify-center gap-4">
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index)}
+              className={`size-[28px] rounded-full transition-all duration-200 ${
+                index === currentPage 
+                  ? 'bg-[#e76d57] scale-110' 
+                  : 'bg-[#1e1e1e] hover:bg-[#4a4a4a]'
+              }`}
+              aria-label={`Go to page ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -183,46 +165,19 @@ function ExpandedMusicPlayer({
 
 function Frame15() {
   return (
-    <div className="absolute h-[28px] left-[322.51px] top-[484.88px] w-[108px]">
-      <svg
-        className="block size-full"
-        fill="none"
-        preserveAspectRatio="none"
-        viewBox="0 0 108 28"
-      >
-        <g id="Frame 33">
-          <circle
-            cx="14"
-            cy="14"
-            fill="var(--fill-0, black)"
-            id="Ellipse 4"
-            r="14"
-          />
-          <circle
-            cx="54"
-            cy="14"
-            fill="var(--fill-0, black)"
-            id="Ellipse 5"
-            r="14"
-          />
-          <circle
-            cx="94"
-            cy="14"
-            fill="var(--fill-0, black)"
-            id="Ellipse 6"
-            r="14"
-          />
-        </g>
-      </svg>
+    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3">
+      <div className="size-[20px] md:size-[24px] rounded-full bg-black" />
+      <div className="size-[20px] md:size-[24px] rounded-full bg-black" />
+      <div className="size-[20px] md:size-[24px] rounded-full bg-black" />
     </div>
   );
 }
 
 function Frame5({ onExpand }: { onExpand: () => void }) {
   return (
-    <div className="h-[552.291px] relative shrink-0 w-[774.044px]">
-      <div className="absolute bg-[#d9d9d9] h-[552.291px] left-0 rounded-[54.392px] top-0 w-[774.044px] flex items-center justify-center">
-        <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[32px]">
+    <div className="relative w-full max-w-[650px] aspect-[774/552] shrink-0">
+      <div className="absolute bg-[#d9d9d9] inset-0 rounded-[24px] shadow-lg flex items-center justify-center">
+        <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[16px] md:text-[18px]">
           Harmony Sheet Music Preview
         </p>
       </div>
@@ -241,123 +196,65 @@ function Tag({
 }) {
   return (
     <div
-      className={`${gridArea} box-border flex items-center justify-center px-[25.104px] py-[12.552px] relative rounded-full shrink-0 min-w-0`}
+      className={`${gridArea} box-border flex items-center justify-center px-4 md:px-5 py-2 md:py-2.5 relative rounded-full shrink-0 min-w-0 hover:bg-[#e5ddd5]/50 hover:scale-105 transition-all cursor-default`}
     >
       <div
         aria-hidden="true"
-        className="absolute border-[#e5ddd5] border-[4.184px] border-solid inset-0 pointer-events-none rounded-full"
+        className="absolute border-[#e5ddd5] border-[3px] border-solid inset-0 pointer-events-none rounded-full"
       />
-      <p className="font-['Figtree:Regular',_sans-serif] font-normal leading-[100.005%] relative text-[40px] text-black text-center truncate px-2">
+      <p className="font-['Figtree:Regular',_sans-serif] font-normal leading-[100.005%] relative text-[13px] md:text-[14px] lg:text-[15px] text-black text-center px-1">
         {label}
       </p>
     </div>
   );
 }
 
-function Frame10({ data }: { data: ResultsData }) {
-  return (
-    <div className="gap-[28px] grid grid-cols-[repeat(2,_minmax(0px,_1fr))] grid-rows-[repeat(3,_minmax(0px,_1fr))] h-[348.513px] relative shrink-0 w-full">
-      <Tag
-        label={data.instruments[0]}
-        gridArea="[grid-area:1_/_1]"
-      />
-      <Tag
-        label={data.instruments[1]}
-        gridArea="[grid-area:1_/_2]"
-      />
-      <Tag
-        label={data.instruments[2] || ""}
-        gridArea="[grid-area:2_/_1]"
-      />
-      <Tag
-        label={data.difficulty}
-        gridArea="[grid-area:2_/_2]"
-      />
-      <Tag label={data.style} gridArea="[grid-area:3_/_1]" />
-    </div>
-  );
+function getIconForSection(title: string) {
+  if (title.includes('Instruments')) return <Music2 size={16} />;
+  if (title.includes('Style')) return <Sparkles size={16} />;
+  if (title.includes('Difficulty')) return <BarChart3 size={16} />;
+  return null;
 }
 
-function Frame3({
-  onRegenerate,
-}: {
-  onRegenerate: () => void;
-}) {
+function TagSection({ title, tags }: { title: string; tags: string[] }) {
+  // Remove emoji from title
+  const cleanTitle = title.replace(/[🎸🎵📊]/g, '').trim();
+  
   return (
-    <button
-      onClick={onRegenerate}
-      className="bg-[#e76d57] box-border content-stretch flex gap-[41.84px] items-center justify-center px-[25.104px] py-[12.552px] relative rounded-[33.472px] shrink-0 cursor-pointer hover:scale-105 transition-transform"
-    >
-      <p className="font-['Figtree:Bold',_sans-serif] font-bold leading-[100.005%] relative shrink-0 text-[53.555px] text-center text-nowrap text-white whitespace-pre">
-        Regenerate
-      </p>
-    </button>
-  );
-}
-
-function Frame11({
-  data,
-  onRegenerate,
-}: {
-  data: ResultsData;
-  onRegenerate: () => void;
-}) {
-  return (
-    <div className="content-stretch flex flex-col gap-[116px] items-center relative shrink-0 w-[386.594px]">
-      <Frame10 data={data} />
-      <Frame3 onRegenerate={onRegenerate} />
-    </div>
-  );
-}
-
-function Frame12({
-  onExpand,
-  data,
-  onRegenerate,
-}: {
-  onExpand: () => void;
-  data: ResultsData;
-  onRegenerate: () => void;
-}) {
-  return (
-    <div className="content-stretch flex gap-[40px] items-start relative shrink-0 w-full">
-      <Frame5 onExpand={onExpand} />
-      <Frame11 data={data} onRegenerate={onRegenerate} />
+    <div className="flex flex-col gap-2.5 w-full bg-white/30 backdrop-blur-sm p-4 md:p-5 rounded-[18px]">
+      <h3 className="font-['Figtree:SemiBold',_sans-serif] font-semibold text-[14px] md:text-[15px] text-[#201315] flex items-center gap-2">
+        {getIconForSection(title)}
+        {cleanTitle}
+      </h3>
+      <div className="flex flex-wrap gap-2.5">
+        {tags.map((tag, index) => (
+          <Tag key={`${title}-${index}`} label={tag} gridArea="" />
+        ))}
+      </div>
     </div>
   );
 }
 
 function Frame13({
-  projectName,
-  isEditing,
-  onEdit,
-  onSave,
-  onChange,
+  instruments,
+  styles,
+  difficulty,
   onExpand,
-  data,
   onRegenerate,
 }: {
-  projectName: string;
-  isEditing: boolean;
-  onEdit: () => void;
-  onSave: () => void;
-  onChange: (value: string) => void;
+  instruments: string[];
+  styles: string[];
+  difficulty: string;
   onExpand: () => void;
-  data: ResultsData;
   onRegenerate: () => void;
 }) {
   return (
-    <div className="content-stretch flex flex-col gap-[50px] items-start relative shrink-0 w-full">
-      <Frame2
-        projectName={projectName}
-        isEditing={isEditing}
-        onEdit={onEdit}
-        onSave={onSave}
-        onChange={onChange}
-      />
-      <Frame12
-        onExpand={onExpand}
-        data={data}
+    <div className="content-stretch flex flex-col lg:flex-row gap-5 lg:gap-6 items-start w-full">
+      <Frame5 onExpand={onExpand} />
+      <Frame6
+        instruments={instruments}
+        styles={styles}
+        difficulty={difficulty}
         onRegenerate={onRegenerate}
       />
     </div>
@@ -370,51 +267,37 @@ function Frame9({
   onGenerateNew: () => void;
 }) {
   return (
-    <button
-      onClick={onGenerateNew}
-      className="bg-[#e76d57] box-border content-stretch flex gap-[41.84px] items-center justify-center px-[25.104px] py-[12.552px] relative rounded-[33.472px] shrink-0 cursor-pointer hover:scale-105 transition-transform"
-    >
-      <p className="font-['Figtree:Bold',_sans-serif] font-bold leading-[100.005%] relative shrink-0 text-[53.555px] text-center text-nowrap text-white whitespace-pre">
-        Generate New
-      </p>
-    </button>
+    <SecondaryButton onClick={onGenerateNew}>
+      Generate New
+    </SecondaryButton>
   );
 }
 
 function Frame14({
-  projectName,
-  isEditing,
-  onEdit,
-  onSave,
-  onChange,
   onExpand,
   data,
   onRegenerate,
   onGenerateNew,
 }: {
-  projectName: string;
-  isEditing: boolean;
-  onEdit: () => void;
-  onSave: () => void;
-  onChange: (value: string) => void;
   onExpand: () => void;
   data: ResultsData;
   onRegenerate: () => void;
   onGenerateNew: () => void;
 }) {
   return (
-    <div className="absolute content-stretch flex flex-col gap-[70px] items-center left-[238.49px] top-[230.12px] w-[1200.64px]">
-      <Frame13
-        projectName={projectName}
-        isEditing={isEditing}
-        onEdit={onEdit}
-        onSave={onSave}
-        onChange={onChange}
-        onExpand={onExpand}
-        data={data}
-        onRegenerate={onRegenerate}
-      />
-      <Frame9 onGenerateNew={onGenerateNew} />
+    <div className="content-stretch flex flex-col gap-5 md:gap-6 w-full">
+      <div className="flex flex-col gap-5 items-start w-full">
+        <Frame13
+          instruments={data.instruments}
+          styles={[data.style]}
+          difficulty={data.difficulty}
+          onExpand={onExpand}
+          onRegenerate={onRegenerate}
+        />
+      </div>
+      <div className="flex justify-center w-full">
+        <Frame9 onGenerateNew={onGenerateNew} />
+      </div>
     </div>
   );
 }
@@ -449,20 +332,86 @@ export default function ResultsScreen({
     setIsEditing(false);
   };
 
+  const handleSaveProject = () => {
+    // TODO: Implement save functionality
+    console.log('Saving project:', projectName);
+  };
+
+  const handleShareProject = () => {
+    // TODO: Implement share functionality
+    console.log('Sharing project:', projectName);
+  };
+
+  const handleExportProject = () => {
+    // TODO: Implement export functionality
+    console.log('Exporting project:', projectName);
+  };
+
   return (
-    <div className="bg-[#f8f3eb] relative min-h-screen w-full">
-      <Frame />
-      <Frame14
-        projectName={tempName}
-        isEditing={isEditing}
-        onEdit={handleEdit}
-        onSave={handleSave}
-        onChange={setTempName}
-        onExpand={() => setIsExpanded(true)}
-        data={data}
-        onRegenerate={onRegenerate}
-        onGenerateNew={onGenerateNew}
+    <div className="bg-[#f8f3eb] relative h-screen w-full overflow-hidden flex flex-col">
+      <AppHeader
+        currentStep={2}
+        totalSteps={3}
+        onBack={() => {
+          /* TODO: Navigate back to instrument selection */
+        }}
       />
+      <div className="flex-1 overflow-y-auto">
+        <div className="flex flex-col gap-3.5 md:gap-4 max-w-[1200px] w-full px-4 md:px-8 mx-auto py-4">
+          <Breadcrumbs
+            steps={["Select Instruments", "Processing", "Results"]}
+            currentStep={2}
+          />
+          
+          {/* Results Header with Actions */}
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-3">
+            <PageHeader
+              title="Here is your harmony!"
+              subtitle="Your personalized sheet music based on your preferences"
+              showProjectName={true}
+              projectName={tempName}
+              isEditing={isEditing}
+              onProjectNameChange={setTempName}
+              onEditToggle={isEditing ? handleSave : handleEdit}
+            />
+
+            {/* Quick Actions */}
+            <div className="flex items-center gap-2 flex-wrap md:flex-nowrap">
+              <button
+                onClick={handleSaveProject}
+                className="px-4 py-2 bg-white border-2 border-[#e5ddd5] rounded-full hover:bg-[#e5ddd5]/30 transition-all text-[14px] font-['Figtree:SemiBold',_sans-serif] flex items-center gap-2 active:scale-95"
+                aria-label="Save project"
+              >
+                <Save size={16} />
+                <span className="hidden md:inline">Save</span>
+              </button>
+              <button
+                onClick={handleShareProject}
+                className="px-4 py-2 bg-white border-2 border-[#e5ddd5] rounded-full hover:bg-[#e5ddd5]/30 transition-all text-[14px] font-['Figtree:SemiBold',_sans-serif] flex items-center gap-2 active:scale-95"
+                aria-label="Share project"
+              >
+                <Share2 size={16} />
+                <span className="hidden md:inline">Share</span>
+              </button>
+              <button
+                onClick={handleExportProject}
+                className="px-4 py-2 bg-gradient-to-r from-[#201315] to-[#e76d57] text-white rounded-full hover:scale-105 transition-all text-[14px] font-['Figtree:Bold',_sans-serif] flex items-center gap-2 shadow-lg active:scale-95"
+                aria-label="Export project"
+              >
+                <Download size={16} />
+                <span className="hidden md:inline">Export</span>
+              </button>
+            </div>
+          </div>
+
+          <Frame14
+            onExpand={() => setIsExpanded(true)}
+            data={data}
+            onRegenerate={onRegenerate}
+            onGenerateNew={onGenerateNew}
+          />
+        </div>
+      </div>
       {isExpanded && (
         <ExpandedMusicPlayer
           onClose={() => setIsExpanded(false)}

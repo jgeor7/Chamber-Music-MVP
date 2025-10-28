@@ -1,52 +1,15 @@
 import { useState, useEffect } from 'react';
-import svgPaths from "../imports/svg-rbijqw4y5e";
-import imgRectangle from "figma:asset/7eae5bd45ddc37064c66617f933c5534a0a11ca5.png";
-import imgImage56 from "figma:asset/303b445e54c5b8ae72351f6d3ab1499cfbe2007e.png";
-import imgImage46 from "figma:asset/7b2a6ed9ab62676184118c0018d5d4674baa9d6f.png";
-import imgImage58 from "figma:asset/2933498005c8e61eceb7c89c324146c36ed5b7a6.png";
+import violinImg from "../assets/violin.jpg";
+import violaImg from "../assets/viola.jpg";
+import celloImg from "../assets/cello.jpg";
+import doubleBassImg from "../assets/double bass.jpg";
 import { X } from 'lucide-react';
-
-function Music() {
-  return (
-    <div className="relative shrink-0 size-[100.416px]" data-name="Music">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 101 101">
-        <g id="Music">
-          <path d={svgPaths.p3abf3380} id="Icon" stroke="url(#paint0_linear_4_213)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="8.36804" />
-        </g>
-        <defs>
-          <linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_4_213" x1="50.2082" x2="50.2082" y1="12.5521" y2="87.8644">
-            <stop stopColor="#E76D57" />
-            <stop offset="1" stopColor="#813D31" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-  );
-}
-
-function Frame() {
-  return (
-    <div className="content-stretch flex gap-[33.891px] h-[96.232px] items-center relative shrink-0 w-full">
-      <div className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] relative shrink-0 text-[#201315] text-[67.781px] text-nowrap whitespace-pre">
-        <p className="mb-0">{`Choose your instruments, style `}</p>
-        <p>and difficulty</p>
-      </div>
-      <Music />
-    </div>
-  );
-}
-
-function ChevronDown({ isOpen }: { isOpen: boolean }) {
-  return (
-    <div className={`relative shrink-0 size-[32px] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} data-name="Chevron down">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 32">
-        <g id="Chevron down">
-          <path d="M8 12L16 20L24 12" id="Icon" stroke="var(--stroke-0, #1E1E1E)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3.2" />
-        </g>
-      </svg>
-    </div>
-  );
-}
+import { PrimaryButton } from './ui/Buttons';
+import { Card, CardContent } from './ui/card';
+import AppHeader from './AppHeader';
+import PageHeader from './PageHeader';
+import Breadcrumbs from './Breadcrumbs';
+import { ChevronDownIcon } from './icons';
 
 function AccordionItem({ 
   label, 
@@ -69,10 +32,10 @@ function AccordionItem({
       >
         <div aria-hidden="true" className="absolute border-[#e5ddd5] border-[1.6px] border-solid inset-0 pointer-events-none rounded-[12.8px]" />
         <div className="basis-0 content-stretch flex gap-[12.8px] grow items-center min-h-px min-w-px relative shrink-0" data-name="Accordion Title">
-          <p className="basis-0 font-['Figtree:SemiBold',_sans-serif] font-semibold grow leading-[1.4] min-h-px min-w-px relative shrink-0 text-[#1e1e1e] text-[25.6px]">
+          <p className="basis-0 font-['Figtree:SemiBold',_sans-serif] font-semibold grow leading-[1.4] min-h-px min-w-px relative shrink-0 text-[#1e1e1e] text-[18px]">
             {value || label}
           </p>
-          <ChevronDown isOpen={isOpen} />
+          <ChevronDownIcon isOpen={isOpen} />
         </div>
       </div>
       
@@ -81,7 +44,7 @@ function AccordionItem({
           {options.map((option, index) => (
             <div
               key={index}
-              className="px-[25.6px] py-[16px] hover:bg-[rgba(231,109,87,0.1)] cursor-pointer font-['Figtree:SemiBold',_sans-serif] font-semibold text-[#1e1e1e] text-[22px] transition-colors"
+              className="px-[25.6px] py-[16px] hover:bg-[rgba(231,109,87,0.1)] cursor-pointer font-['Figtree:SemiBold',_sans-serif] font-semibold text-[#1e1e1e] text-[16px] transition-colors"
               onClick={() => {
                 onChange(option);
                 setIsOpen(false);
@@ -140,8 +103,7 @@ function Frame12({
   onDifficultyChange: (value: string) => void;
 }) {
   return (
-    <div className="content-stretch flex flex-col gap-[75px] items-start relative shrink-0 w-[907.932px]">
-      <Frame />
+    <div className="content-stretch flex flex-col gap-[40px] md:gap-[60px] items-start relative shrink-0 w-full max-w-[1100px]">
       <Frame11 
         musicalStyle={musicalStyle}
         difficulty={difficulty}
@@ -165,37 +127,39 @@ function InstrumentCard({
 }) {
   return (
     <div 
-      className={`bg-gradient-to-b box-border content-stretch flex from-[rgba(231,109,87,0.1)] gap-[33.472px] h-[418.402px] items-center px-[70.292px] py-[30.125px] relative rounded-[40.167px] shrink-0 to-[109.2%] to-[rgba(115,115,115,0)] w-[391.624px] cursor-pointer transition-all duration-300 hover:scale-105 ${isSelected ? 'ring-4 ring-[#e76d57]' : ''}`}
+      className={`bg-gradient-to-b box-border content-stretch flex from-[rgba(231,109,87,0.1)] gap-[22px] h-[320px] items-center px-[45px] py-[18px] relative rounded-[30px] shrink-0 to-[109.2%] to-[rgba(115,115,115,0)] w-[260px] cursor-pointer transition-all duration-300 hover:scale-105 ${isSelected ? 'ring-4 ring-[#e76d57]' : ''}`}
       onClick={onClick}
     >
-      <div aria-hidden="true" className={`absolute border-[3.347px] border-solid inset-0 pointer-events-none rounded-[40.167px] transition-colors ${isSelected ? 'border-[#e76d57]' : 'border-[#e5ddd5]'}`} />
-      <div className="content-stretch flex flex-col gap-[33.472px] items-center relative shrink-0 w-[247.051px]">
-        <div className="relative shrink-0 size-[247.051px] flex items-center justify-center overflow-hidden">
-          <img alt={name} className="max-w-full max-h-full object-contain pointer-events-none" src={image} />
-        </div>
-        <p className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] relative shrink-0 text-[53.555px] text-black text-center">{name}</p>
+      <div aria-hidden="true" className={`absolute border-[3px] border-solid inset-0 pointer-events-none rounded-[30px] transition-colors ${isSelected ? 'border-[#e76d57]' : 'border-[#e5ddd5]'}`} />
+      <div className="content-stretch flex flex-col gap-[22px] items-center relative shrink-0 w-full">
+        <Card className="relative shrink-0 size-[170px] flex items-center justify-center overflow-hidden border-none shadow-md">
+          <CardContent className="p-3.5 flex items-center justify-center">
+            <img alt={name} className="max-w-full max-h-full object-contain pointer-events-none" src={image} />
+          </CardContent>
+        </Card>
+        <p className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] relative shrink-0 text-[21px] text-black text-center">{name}</p>
       </div>
     </div>
   );
 }
 
-function Frame9({ selectedInstruments, onInstrumentToggle, maxSelection, showToast }: { selectedInstruments: string[]; onInstrumentToggle: (name: string) => void; maxSelection: number; showToast: boolean }) {
+function Frame9({ selectedInstruments, onInstrumentToggle, maxSelection }: { selectedInstruments: string[]; onInstrumentToggle: (name: string) => void; maxSelection: number }) {
   const instruments = [
-    { image: imgRectangle, name: 'Violin' },
-    { image: imgImage56, name: 'Saxophone' },
-    { image: imgImage46, name: 'Piano' },
-    { image: imgImage58, name: 'Trumpet' },
+    { image: violinImg, name: 'Violin' },
+    { image: violaImg, name: 'Viola' },
+    { image: celloImg, name: 'Cello' },
+    { image: doubleBassImg, name: 'Double Bass' },
   ];
 
   return (
     <div className="content-start flex flex-col gap-[40px] items-start relative shrink-0 w-full">
-      <div className="content-start flex flex-wrap gap-[83.68px] items-start relative shrink-0 w-full">
+      <div className="flex gap-[28px] md:gap-[36px] items-start relative shrink-0 w-full justify-center">
         {instruments.map((instrument, i) => {
           const isSelected = selectedInstruments.includes(instrument.name);
           const canSelect = isSelected || selectedInstruments.length < maxSelection;
           
           return (
-            <div key={i} className={!canSelect ? 'opacity-40 pointer-events-none' : ''}>
+            <div key={i} className={`flex-shrink-0 ${!canSelect ? 'opacity-40 pointer-events-none' : ''}`}>
               <InstrumentCard 
                 image={instrument.image} 
                 name={instrument.name}
@@ -217,8 +181,7 @@ function Frame13({
   onMusicalStyleChange,
   onDifficultyChange,
   onInstrumentToggle,
-  onGenerate,
-  showToast
+  onGenerate
 }: { 
   musicalStyle: string;
   difficulty: string;
@@ -227,29 +190,25 @@ function Frame13({
   onDifficultyChange: (value: string) => void;
   onInstrumentToggle: (name: string) => void;
   onGenerate: () => void;
-  showToast: boolean;
 }) {
-  const canContinue = selectedInstruments.length === 3;
+  const canContinue = musicalStyle && difficulty && selectedInstruments.length > 0;
   
   return (
-    <div className="content-stretch flex flex-col gap-[98px] items-start ml-[280px] mt-[98px] mb-[98px] w-[1343.4px]">
+    <div className="content-stretch flex flex-col gap-[40px] md:gap-[60px] items-start w-full">
       <Frame12 
         musicalStyle={musicalStyle}
         difficulty={difficulty}
         onMusicalStyleChange={onMusicalStyleChange}
         onDifficultyChange={onDifficultyChange}
       />
-      <Frame9 selectedInstruments={selectedInstruments} onInstrumentToggle={onInstrumentToggle} maxSelection={3} showToast={showToast} />
-      {canContinue && (
-        <button
-          onClick={onGenerate}
-          className="bg-[#e76d57] box-border content-stretch flex gap-[41.84px] items-center justify-center px-[50px] py-[20px] relative rounded-[33.472px] shrink-0 cursor-pointer hover:scale-105 transition-all self-center"
-        >
-          <p className="font-['Figtree:Bold',_sans-serif] font-bold leading-[100.005%] relative shrink-0 text-[53.555px] text-center text-nowrap text-white whitespace-pre">
-            Continue
-          </p>
-        </button>
-      )}
+      <Frame9 selectedInstruments={selectedInstruments} onInstrumentToggle={onInstrumentToggle} maxSelection={4} />
+      <PrimaryButton
+        onClick={onGenerate}
+        className="self-center"
+        disabled={!canContinue}
+      >
+        Continue
+      </PrimaryButton>
     </div>
   );
 }
@@ -259,13 +218,14 @@ function ToastNotification({ count, maxSelection, onDismiss }: { count: number; 
     <div className="fixed bottom-8 right-8 bg-white rounded-2xl shadow-2xl border-2 border-[#e5ddd5] p-6 flex items-center gap-4 animate-in slide-in-from-bottom-4 z-50">
       <div className="flex items-center gap-3">
         <div className="w-3 h-3 rounded-full bg-[#e76d57]" />
-        <p className="font-['Figtree:SemiBold',_sans-serif] text-[#201315] text-[20px]">
+        <p className="font-['Figtree:SemiBold',_sans-serif] text-[#201315] text-[16px]">
           {count} of {maxSelection} instruments selected
         </p>
       </div>
       <button
         onClick={onDismiss}
         className="ml-2 p-1 hover:bg-[#f8f3eb] rounded-lg transition-colors"
+        aria-label="Dismiss notification"
       >
         <X size={20} className="text-[#813D31]" />
       </button>
@@ -280,7 +240,7 @@ export default function InstrumentSelectionScreen({ onGenerate }: { onGenerate: 
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    if (selectedInstruments.length === 3) {
+    if (selectedInstruments.length > 0 && selectedInstruments.length <= 4) {
       setShowToast(true);
     } else {
       setShowToast(false);
@@ -291,36 +251,51 @@ export default function InstrumentSelectionScreen({ onGenerate }: { onGenerate: 
     setSelectedInstruments(prev => 
       prev.includes(name) 
         ? prev.filter(i => i !== name)
-        : prev.length < 3 ? [...prev, name] : prev
+        : prev.length < 4 ? [...prev, name] : prev
     );
   };
 
   const handleGenerate = () => {
-    if (selectedInstruments.length === 3) {
+    if (selectedInstruments.length > 0 && musicalStyle && difficulty) {
       onGenerate({
         instruments: selectedInstruments,
-        style: musicalStyle || 'Classical',
-        difficulty: difficulty || 'Intermediate'
+        style: musicalStyle,
+        difficulty: difficulty
       });
     }
   };
 
   return (
-    <div className="bg-[#f8f3eb] relative size-full overflow-y-auto">
-      <Frame13 
-        musicalStyle={musicalStyle}
-        difficulty={difficulty}
-        selectedInstruments={selectedInstruments}
-        onMusicalStyleChange={setMusicalStyle}
-        onDifficultyChange={setDifficulty}
-        onInstrumentToggle={handleInstrumentToggle}
-        onGenerate={handleGenerate}
-        showToast={showToast}
+    <div className="bg-[#f8f3eb] relative w-full h-screen overflow-hidden flex flex-col">
+      <AppHeader
+        currentStep={0}
+        totalSteps={3}
       />
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-8 py-4">
+          <Breadcrumbs
+            steps={["Select Instruments", "Processing", "Results"]}
+            currentStep={0}
+          />
+          <PageHeader
+            title="Choose your instruments, style and difficulty"
+            subtitle="Select up to 4 instruments and customize your musical preferences"
+          />
+          <Frame13 
+            musicalStyle={musicalStyle}
+            difficulty={difficulty}
+            selectedInstruments={selectedInstruments}
+            onMusicalStyleChange={setMusicalStyle}
+            onDifficultyChange={setDifficulty}
+            onInstrumentToggle={handleInstrumentToggle}
+            onGenerate={handleGenerate}
+          />
+        </div>
+      </div>
       {showToast && (
         <ToastNotification 
           count={selectedInstruments.length} 
-          maxSelection={3}
+          maxSelection={4}
           onDismiss={() => setShowToast(false)}
         />
       )}
