@@ -53,7 +53,7 @@
         '@': path.resolve(__dirname, './src'),
       },
     },
-    dist: {
+    Build: {
       target: 'esnext',
       outDir: 'dist',
     },
