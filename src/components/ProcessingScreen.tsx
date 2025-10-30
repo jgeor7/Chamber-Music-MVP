@@ -42,7 +42,7 @@ function MusicalStaff({ isActive, currentStep }: { isActive: boolean; currentSte
   };
 
   return (
-    <div className="relative w-[500px] h-[400px] flex items-center justify-center bg-gradient-to-br from-white/40 to-white/20 rounded-3xl backdrop-blur-sm border-2 border-black/10 shadow-xl overflow-hidden">
+    <div className="relative w-full max-w-[500px] h-[300px] sm:h-[350px] md:h-[400px] flex items-center justify-center bg-gradient-to-br from-white/40 to-white/20 rounded-2xl sm:rounded-3xl backdrop-blur-sm border-2 border-black/10 shadow-xl overflow-hidden">
       {/* Staff Lines */}
       <div className="absolute inset-0 flex flex-col justify-center px-8">
         {[...Array(5)].map((_, i) => (
@@ -79,7 +79,7 @@ function MusicalStaff({ isActive, currentStep }: { isActive: boolean; currentSte
 
       {/* Pitch/Key Indicator */}
       {isActive && (
-        <div className="absolute bottom-6 right-8 bg-black/80 text-white px-6 py-3 rounded-full font-['Figtree:Bold',_sans-serif] text-lg shadow-lg backdrop-blur-sm animate-pulse-subtle">
+        <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-8 bg-black/80 text-white px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full font-['Figtree:Bold',_sans-serif] text-[13px] sm:text-[15px] md:text-lg shadow-lg backdrop-blur-sm animate-pulse-subtle">
           {currentStep === 0 && 'Analyzing...'}
           {currentStep === 1 && 'Detecting Pitch'}
           {currentStep === 2 && 'Key: C Major'}
@@ -156,7 +156,7 @@ function ProcessingStepComponent({
 }) {
   const textColor = step.error ? "text-red-600" : (step.completed || step.active ? "text-black" : "text-[#dadada]");
   const opacity = step.completed ? "opacity-60" : "opacity-100";
-  const gapClass = gap === '41.84' ? 'gap-[41.84px]' : 'gap-[20px]';
+  const gapClass = gap === '41.84' ? 'gap-[20px] sm:gap-[28px] md:gap-[35px] lg:gap-[41.84px]' : 'gap-[12px] sm:gap-[16px] md:gap-[20px]';
   
   return (
     <div 
@@ -164,8 +164,8 @@ function ProcessingStepComponent({
       aria-current={step.active ? "step" : undefined}
     >
       <p 
-        className={`font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] relative shrink-0 text-nowrap whitespace-pre ${textColor} ${opacity} transition-all duration-500 ${
-          step.active ? 'text-[36px] scale-105' : 'text-[32px] scale-100'
+        className={`font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] relative shrink-0 text-wrap sm:text-nowrap whitespace-normal sm:whitespace-pre ${textColor} ${opacity} transition-all duration-500 ${
+          step.active ? 'text-[22px] sm:text-[26px] md:text-[32px] lg:text-[36px] scale-105' : 'text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] scale-100'
         }`}
       >
         {step.label}
@@ -250,7 +250,7 @@ function SuccessOverlay() {
 
 function Group({ isProcessing, currentStep }: { isProcessing: boolean; currentStep: number }) {
   return (
-    <div className="relative w-[550px] h-[450px] flex items-center justify-center max-md:hidden">
+    <div className="relative w-full max-w-[550px] h-[300px] sm:h-[350px] md:h-[450px] flex items-center justify-center">
       <MusicalStaff isActive={isProcessing} currentStep={currentStep} />
     </div>
   );
@@ -487,22 +487,22 @@ export default function ProcessingScreen({
       {/* Centered content wrapper */}
       <div className="flex flex-col items-center justify-center w-full max-w-7xl mx-auto">
         {/* Header with file info - moved to top with improved styling */}
-        <div className="w-full mb-12">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 border border-black/5 max-w-4xl mx-auto">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-center gap-3">
-                <svg className="w-6 h-6 text-[#1E1E1E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="w-full mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-5 md:p-6 border border-black/5 max-w-4xl mx-auto">
+            <div className="flex flex-col gap-1.5 sm:gap-2">
+              <div className="flex items-center justify-center gap-2 sm:gap-3">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#1E1E1E] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                 </svg>
-                <p className="text-2xl text-[#1E1E1E] font-['Figtree:Bold',_sans-serif]">
-                  Processing: <span className="font-['Figtree',_sans-serif] text-[#1E1E1E]/80">{fileName}</span>
+                <p className="text-[16px] sm:text-[18px] md:text-[20px] lg:text-2xl text-[#1E1E1E] font-['Figtree:Bold',_sans-serif] text-center">
+                  Processing: <span className="font-['Figtree',_sans-serif] text-[#1E1E1E]/80 break-all">{fileName}</span>
                 </p>
               </div>
-              <div className="flex items-center justify-center gap-2">
-                <svg className="w-5 h-5 text-[#1E1E1E]/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#1E1E1E]/70 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p className="text-lg text-[#1E1E1E]/70 font-['Figtree:SemiBold',_sans-serif]">
+                <p className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-lg text-[#1E1E1E]/70 font-['Figtree:SemiBold',_sans-serif] text-center">
                   Estimated time: <span className="font-['Figtree:Bold',_sans-serif] text-[#1E1E1E]">{timeRemaining.toFixed(1)}s</span> remaining
                 </p>
               </div>
@@ -511,11 +511,11 @@ export default function ProcessingScreen({
         </div>
         
         {/* Main content area - centered */}
-        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-center w-full">
+        <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center justify-center w-full px-4">
           <Group isProcessing={isProcessing} currentStep={currentStepIndex} />
           
-          <div className="flex flex-col items-center md:items-start relative w-full md:w-auto">
-            <div className="flex flex-col gap-8 md:gap-[83.68px] w-full max-w-2xl">
+          <div className="flex flex-col items-center lg:items-start relative w-full lg:w-auto">
+            <div className="flex flex-col gap-5 sm:gap-6 md:gap-8 lg:gap-[60px] xl:gap-[83.68px] w-full max-w-2xl">
               {steps.map((step, index) => (
                 <ProcessingStepComponent 
                   key={index} 
@@ -529,7 +529,7 @@ export default function ProcessingScreen({
             {canCancel && (
               <button
                 onClick={handleCancel}
-                className="mt-12 px-8 py-4 bg-[#1E1E1E] text-[#f8f3eb] rounded-full font-['Figtree:Bold',_sans-serif] text-lg hover:bg-[#1E1E1E]/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1E1E1E] focus:ring-offset-2 shadow-lg hover:shadow-xl mx-auto md:mx-0"
+                className="mt-8 sm:mt-10 md:mt-12 px-6 sm:px-7 md:px-8 py-3 sm:py-3.5 md:py-4 bg-[#1E1E1E] text-[#f8f3eb] rounded-full font-['Figtree:Bold',_sans-serif] text-[15px] sm:text-[16px] md:text-lg hover:bg-[#1E1E1E]/90 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#1E1E1E] focus:ring-offset-2 shadow-lg hover:shadow-xl mx-auto lg:mx-0"
                 aria-label="Cancel processing"
               >
                 Cancel Processing

@@ -11,30 +11,39 @@ A modern web application for generating harmonies from MIDI/XML files with intel
 ## ✨ Features
 
 ### 🎵 File Upload & Processing
-- **Drag & Drop Interface** - Intuitive upload experience with visual feedback
+- **Drag & Drop Interface** - Intuitive upload experience with visual feedback and animated gradient
 - **File Validation** - Supports MIDI (.mid, .midi) and MusicXML (.xml, .musicxml) files up to 50MB
-- **Animated Processing** - Multi-step validation with smooth transitions
+- **Animated Processing** - Multi-step validation with musical staff visualization and smooth transitions
 
 ### 🎹 Smart Instrument Selection
-- **Interactive Cards** - Select exactly 3 instruments from a curated library
+- **Interactive Cards** - Select up to 4 instruments from a curated library (Violin, Viola, Cello, Double Bass)
+- **Responsive Grid Layout** - 2-column mobile, 4-column desktop
 - **Customization Options**:
-  - Musical Style (Classical, Jazz, Pop, Rock, Blues)
+  - Musical Style (Classical, Jazz, Pop, Rock, Blues, Folk)
   - Difficulty Level (Beginner, Intermediate, Advanced, Expert)
 - **Real-time Feedback** - Toast notifications and visual indicators
 
 ### 📊 Results Dashboard
-- **Harmony Preview** - Expandable sheet music viewer
+- **Harmony Preview** - Expandable sheet music viewer with pagination
 - **Project Management**:
   - Inline project name editing
   - Regenerate harmony with same settings
   - Start new project functionality
-- **Metadata Display** - View selected instruments, style, and difficulty
+  - Quick action buttons (Save, Share, Export)
+- **Metadata Display** - View selected instruments, style, and difficulty with icon badges
+
+### 🧭 Navigation & Pages
+- **Draggable Sidebar** - Repositionable sidebar with 6 snap positions (corners and center-top/bottom)
+- **Home Page** - Main upload interface with animated title and circular gradient
+- **Projects Page** - View and manage saved harmony projects
+- **Profile Page** - User account information and statistics
 
 ### 🎨 Design & UX
-- **Responsive Layout** - Optimized for desktop with mobile considerations
-- **Expandable Sidebar** - Clean navigation with hover interactions
+- **Fully Responsive** - Mobile-first design (375px to 1440px+) with Tailwind breakpoints
+- **Expandable Sidebar** - Hover-to-expand navigation with smooth animations
 - **Custom Branding** - Musical note themed logo and warm color palette
-- **Smooth Animations** - Polished transitions throughout the application
+- **Ripple Animations** - Subtle breathing effect on circular elements
+- **Gradient Pulse** - Dynamic animated gradient on upload area
 
 ## 🚀 Quick Start
 
@@ -79,24 +88,44 @@ harmony-generator/
 │   ├── DESIGN_SYSTEM.md          # Design system guidelines
 │   ├── EXPORT_GUIDE.md           # Export and deployment guide
 │   ├── Attributions.md           # Asset credits
-│   └── Guidelines.md             # Development guidelines
+│   ├── Guidelines.md             # Development guidelines
+│   └── Prompting Guidelines.prompt.md  # AI interaction protocol
 ├── public/                        # Static assets
+│   ├── assets/                   # Public images and files
+│   └── fonts/                    # Custom web fonts
 ├── src/
 │   ├── components/               # React components
-│   │   ├── ui/                   # Shadcn/ui components
+│   │   ├── ui/                   # Shadcn/ui components (20+ components)
 │   │   ├── home/                 # Home page components
+│   │   │   ├── AnimatedTitle.tsx
+│   │   │   ├── UploadZone.tsx
+│   │   │   ├── UploadContent.tsx
+│   │   │   └── UploadMessage.tsx
+│   │   ├── icons/                # Custom icon components
 │   │   ├── figma/                # Figma-specific components
-│   │   └── *.tsx                 # Main screen components
+│   │   ├── HomePage.tsx          # Landing/upload screen
+│   │   ├── InstrumentSelectionScreen.tsx
+│   │   ├── ProcessingScreen.tsx
+│   │   ├── ResultsScreen.tsx
+│   │   ├── ProjectsPage.tsx      # Projects management page
+│   │   ├── ProfilePage.tsx       # User profile page
+│   │   ├── Sidebar.tsx           # Draggable navigation
+│   │   ├── AppHeader.tsx
+│   │   ├── PageHeader.tsx
+│   │   └── Breadcrumbs.tsx
 │   ├── config/                   # Configuration files
+│   │   └── typography.ts
 │   ├── styles/                   # Global styles
+│   │   └── globals.css
 │   ├── imports/                  # SVG and asset imports
-│   ├── assets/                   # Component assets
-│   ├── App.tsx                   # Main application component
+│   ├── assets/                   # Component assets (images)
+│   ├── App.tsx                   # Main application component with routing
 │   ├── main.tsx                  # React entry point
-│   └── index.css                 # Global CSS imports
+│   └── index.css                 # Global CSS with animations
+├── build/                        # Production build output
 ├── package.json                  # Dependencies and scripts
 ├── vite.config.ts                # Vite configuration
-├── tailwind.config.js            # Tailwind configuration
+├── tailwind.config.js            # Tailwind v4 configuration
 └── README.md                     # This file
 ```
 
@@ -134,10 +163,11 @@ harmony-generator/
 
 ## 🎯 Usage
 
-1. **Upload File** - Drag and drop or browse for MIDI/XML files
-2. **Processing** - Watch automated validation steps
-3. **Select Instruments** - Choose 3 instruments with style/difficulty preferences
-4. **View Results** - Explore generated harmony with project management tools
+1. **Upload File** - Drag and drop or click the circular gradient area to browse for MIDI/XML files
+2. **Processing** - Watch automated validation steps with musical staff visualization
+3. **Select Instruments** - Choose up to 4 instruments with style/difficulty preferences
+4. **View Results** - Explore generated harmony with expandable sheet music viewer
+5. **Navigate** - Use the draggable sidebar to access Projects and Profile pages
 
 ## 🌐 Browser Support
 
@@ -169,12 +199,27 @@ For issues or questions:
 ## 🚀 Future Enhancements
 
 - [ ] Real MIDI/XML file processing integration
-- [ ] Interactive sheet music rendering
+- [ ] Interactive sheet music rendering with music notation library
 - [ ] Audio playback of generated harmonies
-- [ ] User authentication and project saving
-- [ ] Export harmonies as MIDI/PDF formats
-- [ ] Mobile responsive design improvements
+- [ ] User authentication and cloud project saving
+- [ ] Export harmonies as MIDI/PDF/MusicXML formats
+- [ ] Project collaboration features
 - [ ] Dark mode implementation
+- [ ] Advanced harmony algorithms and AI-powered suggestions
+- [ ] Performance optimizations for larger files
+
+## 📋 Recent Updates (v1.0.0)
+
+### November 2025
+- ✅ Fully responsive design across all screens (mobile to desktop)
+- ✅ Reduced and optimized circular gradient upload area
+- ✅ Added ripple animations to gray circles
+- ✅ Implemented Projects and Profile pages
+- ✅ Added sidebar navigation with home button functionality
+- ✅ Draggable sidebar with 6 snap positions
+- ✅ Enhanced ProcessingScreen with musical staff visualization
+- ✅ Improved InstrumentSelectionScreen with grid layout
+- ✅ Added quick action buttons to ResultsScreen
 
 ---
 
