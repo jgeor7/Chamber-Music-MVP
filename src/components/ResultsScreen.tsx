@@ -15,7 +15,7 @@ interface ResultsData {
 function Refresh() {
   return (
     <div
-      className="relative shrink-0 size-[20px] md:size-[22px]"
+      className="relative shrink-0 size-[18px] sm:size-[19px] md:size-[20px] lg:size-[22px]"
       data-name="Refresh Cw"
     >
       <svg
@@ -74,9 +74,9 @@ function Frame6({
       <div className="mt-1.5">
         <div
           onClick={onRegenerate}
-          className="border-solid border-[#201315] bg-[#f8f3eb] content-stretch flex py-2 px-4 gap-2 items-center shrink-0 rounded-[12px] border-[2.5px] cursor-pointer hover:bg-[#e5ddd5] hover:scale-105 transition-all active:scale-95"
+          className="border-solid border-[#201315] bg-[#f8f3eb] content-stretch flex py-1.5 sm:py-2 px-3 sm:px-4 gap-1.5 sm:gap-2 items-center shrink-0 rounded-[10px] sm:rounded-[12px] border-[2px] sm:border-[2.5px] cursor-pointer hover:bg-[#e5ddd5] hover:scale-105 transition-all active:scale-95"
         >
-          <p className="font-['Figtree:SemiBold',_sans-serif] font-semibold leading-[normal] relative shrink-0 text-[#201315] text-[13px] md:text-[14px] lg:text-[15px] text-nowrap whitespace-pre">
+          <p className="font-['Figtree:SemiBold',_sans-serif] font-semibold leading-[normal] relative shrink-0 text-[#201315] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] text-nowrap whitespace-pre">
             Regenerate
           </p>
           <Refresh />
@@ -89,12 +89,12 @@ function Frame6({
 function Maximize({ onClick }: { onClick: () => void }) {
   return (
     <div
-      className="absolute right-4 top-4 size-[36px] md:size-[40px] cursor-pointer hover:opacity-70 transition-opacity bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md"
+      className="absolute right-2 sm:right-3 md:right-4 top-2 sm:top-3 md:top-4 size-[32px] sm:size-[36px] md:size-[40px] cursor-pointer hover:opacity-70 transition-opacity bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-md"
       data-name="Maximize 2"
       onClick={onClick}
     >
       <svg
-        className="block size-[24px] md:size-[28px]"
+        className="block size-[20px] sm:size-[24px] md:size-[28px]"
         fill="none"
         preserveAspectRatio="none"
         viewBox="0 0 51 51"
@@ -123,33 +123,33 @@ function ExpandedMusicPlayer({
   const totalPages = 3; // Number of pages in the sheet music
 
   return (
-    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-8">
-      <div className="bg-[#f8f3eb] rounded-[54.392px] w-full max-w-6xl h-[80vh] relative shadow-2xl flex flex-col">
-        <div className="absolute right-8 top-8">
+    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
+      <div className="bg-[#f8f3eb] rounded-[24px] sm:rounded-[36px] md:rounded-[48px] lg:rounded-[54.392px] w-full max-w-6xl h-[85vh] sm:h-[80vh] relative shadow-2xl flex flex-col">
+        <div className="absolute right-4 sm:right-6 md:right-8 top-4 sm:top-6 md:top-8">
           <IconButton onClick={onClose} size="lg" aria-label="Close expanded view">
-            <X size={32} className="text-[#1e1e1e]" />
+            <X size={24} className="sm:w-[28px] sm:h-[28px] md:w-[32px] md:h-[32px] text-[#1e1e1e]" />
           </IconButton>
         </div>
-        <div className="flex-1 flex items-center justify-center overflow-hidden">
+        <div className="flex-1 flex items-center justify-center overflow-hidden px-4">
           <div className="text-center">
-            <p className="font-['Figtree:Bold',_sans-serif] text-[#201315] text-[32px] mb-4">
+            <p className="font-['Figtree:Bold',_sans-serif] text-[#201315] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] mb-3 sm:mb-4">
               Harmony Sheet Music Preview
             </p>
-            <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[18px] mb-2">
+            <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[18px] mb-1.5 sm:mb-2">
               Page {currentPage + 1} of {totalPages}
             </p>
-            <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[18px]">
+            <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[18px]">
               Sheet music content would appear here
             </p>
           </div>
         </div>
         {/* Pagination dots at bottom */}
-        <div className="pb-8 flex justify-center gap-4">
+        <div className="pb-6 sm:pb-7 md:pb-8 flex justify-center gap-2.5 sm:gap-3 md:gap-4">
           {Array.from({ length: totalPages }).map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentPage(index)}
-              className={`size-[28px] rounded-full transition-all duration-200 ${
+              className={`size-[20px] sm:size-[24px] md:size-[28px] rounded-full transition-all duration-200 ${
                 index === currentPage 
                   ? 'bg-[#e76d57] scale-110' 
                   : 'bg-[#1e1e1e] hover:bg-[#4a4a4a]'
@@ -165,10 +165,10 @@ function ExpandedMusicPlayer({
 
 function Frame15() {
   return (
-    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3">
-      <div className="size-[20px] md:size-[24px] rounded-full bg-black" />
-      <div className="size-[20px] md:size-[24px] rounded-full bg-black" />
-      <div className="size-[20px] md:size-[24px] rounded-full bg-black" />
+    <div className="absolute bottom-2 sm:bottom-3 md:bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 sm:gap-2.5 md:gap-3">
+      <div className="size-[16px] sm:size-[18px] md:size-[20px] lg:size-[24px] rounded-full bg-black" />
+      <div className="size-[16px] sm:size-[18px] md:size-[20px] lg:size-[24px] rounded-full bg-black" />
+      <div className="size-[16px] sm:size-[18px] md:size-[20px] lg:size-[24px] rounded-full bg-black" />
     </div>
   );
 }
@@ -176,8 +176,8 @@ function Frame15() {
 function Frame5({ onExpand }: { onExpand: () => void }) {
   return (
     <div className="relative w-full max-w-[650px] aspect-[774/552] shrink-0">
-      <div className="absolute bg-[#d9d9d9] inset-0 rounded-[24px] shadow-lg flex items-center justify-center">
-        <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[16px] md:text-[18px]">
+      <div className="absolute bg-[#d9d9d9] inset-0 rounded-[16px] sm:rounded-[20px] md:rounded-[24px] shadow-lg flex items-center justify-center">
+        <p className="font-['Figtree:Regular',_sans-serif] text-[#666] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[18px] px-4 text-center">
           Harmony Sheet Music Preview
         </p>
       </div>
@@ -196,13 +196,13 @@ function Tag({
 }) {
   return (
     <div
-      className={`${gridArea} box-border flex items-center justify-center px-4 md:px-5 py-2 md:py-2.5 relative rounded-full shrink-0 min-w-0 hover:bg-[#e5ddd5]/50 hover:scale-105 transition-all cursor-default`}
+      className={`${gridArea} box-border flex items-center justify-center px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 md:py-2.5 relative rounded-full shrink-0 min-w-0 hover:bg-[#e5ddd5]/50 hover:scale-105 transition-all cursor-default`}
     >
       <div
         aria-hidden="true"
-        className="absolute border-[#e5ddd5] border-[3px] border-solid inset-0 pointer-events-none rounded-full"
+        className="absolute border-[#e5ddd5] border-[2px] sm:border-[2.5px] md:border-[3px] border-solid inset-0 pointer-events-none rounded-full"
       />
-      <p className="font-['Figtree:Regular',_sans-serif] font-normal leading-[100.005%] relative text-[13px] md:text-[14px] lg:text-[15px] text-black text-center px-1">
+      <p className="font-['Figtree:Regular',_sans-serif] font-normal leading-[100.005%] relative text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] text-black text-center px-1">
         {label}
       </p>
     </div>
@@ -221,12 +221,12 @@ function TagSection({ title, tags }: { title: string; tags: string[] }) {
   const cleanTitle = title.replace(/[🎸🎵📊]/g, '').trim();
   
   return (
-    <div className="flex flex-col gap-2.5 w-full bg-white/30 backdrop-blur-sm p-4 md:p-5 rounded-[18px]">
-      <h3 className="font-['Figtree:SemiBold',_sans-serif] font-semibold text-[14px] md:text-[15px] text-[#201315] flex items-center gap-2">
+    <div className="flex flex-col gap-2 sm:gap-2.5 w-full bg-white/30 backdrop-blur-sm p-3 sm:p-4 md:p-5 rounded-[14px] sm:rounded-[16px] md:rounded-[18px]">
+      <h3 className="font-['Figtree:SemiBold',_sans-serif] font-semibold text-[13px] sm:text-[14px] md:text-[15px] text-[#201315] flex items-center gap-1.5 sm:gap-2">
         {getIconForSection(title)}
         {cleanTitle}
       </h3>
-      <div className="flex flex-wrap gap-2.5">
+      <div className="flex flex-wrap gap-2 sm:gap-2.5">
         {tags.map((tag, index) => (
           <Tag key={`${title}-${index}`} label={tag} gridArea="" />
         ))}
@@ -376,30 +376,30 @@ export default function ResultsScreen({
             />
 
             {/* Quick Actions */}
-            <div className="flex items-center gap-2 flex-wrap md:flex-nowrap">
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap sm:flex-nowrap">
               <button
                 onClick={handleSaveProject}
-                className="px-4 py-2 bg-white border-2 border-[#e5ddd5] rounded-full hover:bg-[#e5ddd5]/30 transition-all text-[14px] font-['Figtree:SemiBold',_sans-serif] flex items-center gap-2 active:scale-95"
+                className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white border-2 border-[#e5ddd5] rounded-full hover:bg-[#e5ddd5]/30 transition-all text-[13px] sm:text-[14px] font-['Figtree:SemiBold',_sans-serif] flex items-center gap-1.5 sm:gap-2 active:scale-95"
                 aria-label="Save project"
               >
-                <Save size={16} />
-                <span className="hidden md:inline">Save</span>
+                <Save size={14} className="sm:w-[15px] sm:h-[15px] md:w-[16px] md:h-[16px]" />
+                <span className="hidden sm:inline">Save</span>
               </button>
               <button
                 onClick={handleShareProject}
-                className="px-4 py-2 bg-white border-2 border-[#e5ddd5] rounded-full hover:bg-[#e5ddd5]/30 transition-all text-[14px] font-['Figtree:SemiBold',_sans-serif] flex items-center gap-2 active:scale-95"
+                className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white border-2 border-[#e5ddd5] rounded-full hover:bg-[#e5ddd5]/30 transition-all text-[13px] sm:text-[14px] font-['Figtree:SemiBold',_sans-serif] flex items-center gap-1.5 sm:gap-2 active:scale-95"
                 aria-label="Share project"
               >
-                <Share2 size={16} />
-                <span className="hidden md:inline">Share</span>
+                <Share2 size={14} className="sm:w-[15px] sm:h-[15px] md:w-[16px] md:h-[16px]" />
+                <span className="hidden sm:inline">Share</span>
               </button>
               <button
                 onClick={handleExportProject}
-                className="px-4 py-2 bg-gradient-to-r from-[#201315] to-[#e76d57] text-white rounded-full hover:scale-105 transition-all text-[14px] font-['Figtree:Bold',_sans-serif] flex items-center gap-2 shadow-lg active:scale-95"
+                className="px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-[#201315] to-[#e76d57] text-white rounded-full hover:scale-105 transition-all text-[13px] sm:text-[14px] font-['Figtree:Bold',_sans-serif] flex items-center gap-1.5 sm:gap-2 shadow-lg active:scale-95"
                 aria-label="Export project"
               >
-                <Download size={16} />
-                <span className="hidden md:inline">Export</span>
+                <Download size={14} className="sm:w-[15px] sm:h-[15px] md:w-[16px] md:h-[16px]" />
+                <span className="hidden sm:inline">Export</span>
               </button>
             </div>
           </div>

@@ -2,10 +2,15 @@ import { useState, useRef } from 'react';
 import ProcessingScreen from "./components/ProcessingScreen";
 import InstrumentSelectionScreen from "./components/InstrumentSelectionScreen";
 import ResultsScreen from "./components/ResultsScreen";
+import ProjectsPage from "./components/ProjectsPage";
+import ProfilePage from "./components/ProfilePage";
 import Sidebar from "./components/Sidebar";
 import { UploadZone, AnimatedTitle, UploadMessage } from "./components/home";
 
+type Page = 'home' | 'projects' | 'profile';
+
 export default function App() {
+  const [currentPage, setCurrentPage] = useState<Page>('home');
   const [isDragging, setIsDragging] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<string | undefined>(undefined);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -95,10 +100,59 @@ export default function App() {
     setHarmonyData(null);
   };
 
+  const handleNavigateHome = () => {
+    setCurrentPage('home');
+    setShowResults(false);
+    setShowInstrumentSelection(false);
+    setIsProcessing(false);
+    setUploadedFile(undefined);
+    setHarmonyData(null);
+  };
+
+  const handleNavigateProjects = () => {
+    setCurrentPage('projects');
+  };
+
+  const handleNavigateProfile = () => {
+    setCurrentPage('profile');
+  };
+
+  // Show Projects Page
+  if (currentPage === 'projects') {
+    return (
+      <>
+        <Sidebar 
+          onHomeClick={handleNavigateHome}
+          onProjectsClick={handleNavigateProjects}
+          onProfileClick={handleNavigateProfile}
+        />
+        <ProjectsPage />
+      </>
+    );
+  }
+
+  // Show Profile Page
+  if (currentPage === 'profile') {
+    return (
+      <>
+        <Sidebar 
+          onHomeClick={handleNavigateHome}
+          onProjectsClick={handleNavigateProjects}
+          onProfileClick={handleNavigateProfile}
+        />
+        <ProfilePage />
+      </>
+    );
+  }
+
   if (showResults && harmonyData) {
     return (
       <>
-        <Sidebar />
+        <Sidebar 
+          onHomeClick={handleNavigateHome}
+          onProjectsClick={handleNavigateProjects}
+          onProfileClick={handleNavigateProfile}
+        />
         <ResultsScreen 
           data={harmonyData}
           onRegenerate={handleRegenerate}
@@ -111,7 +165,11 @@ export default function App() {
   if (showInstrumentSelection) {
     return (
       <>
-        <Sidebar />
+        <Sidebar 
+          onHomeClick={handleNavigateHome}
+          onProjectsClick={handleNavigateProjects}
+          onProfileClick={handleNavigateProfile}
+        />
         <InstrumentSelectionScreen onGenerate={handleGenerate} />
       </>
     );
@@ -120,7 +178,11 @@ export default function App() {
   if (isProcessing) {
     return (
       <>
-        <Sidebar />
+        <Sidebar 
+          onHomeClick={handleNavigateHome}
+          onProjectsClick={handleNavigateProjects}
+          onProfileClick={handleNavigateProfile}
+        />
         <ProcessingScreen 
           onComplete={() => setShowInstrumentSelection(true)} 
           fileName={uploadedFile}
@@ -131,7 +193,11 @@ export default function App() {
 
   return (
     <>
-      <Sidebar />
+      <Sidebar 
+        onHomeClick={handleNavigateHome}
+        onProjectsClick={handleNavigateProjects}
+        onProfileClick={handleNavigateProfile}
+      />
       <div className="bg-white relative w-full h-screen overflow-hidden" data-name="MacBook Pro 16' - 1">
         <div 
           className="absolute bg-[#f8f3eb] inset-0 w-full h-full overflow-hidden"

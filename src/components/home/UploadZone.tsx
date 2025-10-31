@@ -8,8 +8,8 @@ interface UploadZoneProps {
 
 function InnerCircle({ isHovering }: { isHovering: boolean }) {
   return (
-    <div className={`box-border content-stretch flex items-center justify-center relative rounded-[290.796px] shrink-0 size-[450px] transition-all duration-300 ${isHovering ? 'scale-105' : ''}`}>
-      <div aria-hidden="true" className={`absolute border-[4.245px] border-solid inset-0 pointer-events-none rounded-[290.796px] transition-colors duration-300 ${isHovering ? 'border-[rgba(229,221,213,0.6)]' : 'border-[rgba(229,221,213,0.4)]'}`} />
+    <div className={`box-border content-stretch flex items-center justify-center relative rounded-[216px] shrink-0 w-[216px] h-[216px] sm:w-[249px] sm:h-[249px] md:w-[281px] md:h-[281px] lg:size-[325px] transition-all duration-300 ${isHovering ? 'scale-105' : ''}`}>
+      <div aria-hidden="true" className={`absolute border-[3px] border-solid inset-0 pointer-events-none rounded-[216px] transition-colors duration-300 animate-[ripple_4s_ease-in-out_infinite_0.5s] ${isHovering ? 'border-[rgba(229,221,213,0.6)]' : 'border-[rgba(229,221,213,0.4)]'}`} />
       <UploadContent isHovering={isHovering} />
     </div>
   );
@@ -18,10 +18,10 @@ function InnerCircle({ isHovering }: { isHovering: boolean }) {
 function OuterCircle({ isHovering, onClick }: UploadZoneProps) {
   return (
     <div 
-      className="absolute box-border content-stretch flex items-center justify-center left-[calc(50%+0.035px)] p-[65px] rounded-[329.003px] size-[580px] top-[calc(50%+140px)] translate-x-[-50%] translate-y-[-50%] cursor-pointer"
+      className="absolute box-border content-stretch flex items-center justify-center left-[calc(50%+0.035px)] p-[30px] sm:p-[34px] md:p-[39px] lg:p-[44px] rounded-[238px] w-[238px] h-[238px] sm:w-[281px] sm:h-[281px] md:w-[325px] md:h-[325px] lg:w-[389px] lg:h-[389px] top-[calc(50%+80px)] sm:top-[calc(50%+100px)] md:top-[calc(50%+120px)] translate-x-[-50%] translate-y-[-50%] cursor-pointer"
       onClick={onClick}
     >
-      <div aria-hidden="true" className={`absolute border-[4.245px] border-solid inset-0 pointer-events-none rounded-[329.003px] transition-colors duration-300 ${isHovering ? 'border-[rgba(229,221,213,0.6)]' : 'border-[rgba(229,221,213,0.4)]'}`} />
+      <div aria-hidden="true" className={`absolute border-[3px] border-solid inset-0 pointer-events-none rounded-[238px] transition-colors duration-300 animate-[ripple_4s_ease-in-out_infinite] ${isHovering ? 'border-[rgba(229,221,213,0.6)]' : 'border-[rgba(229,221,213,0.4)]'}`} />
       <InnerCircle isHovering={isHovering} />
     </div>
   );
@@ -29,8 +29,8 @@ function OuterCircle({ isHovering, onClick }: UploadZoneProps) {
 
 export function UploadZone({ isHovering, onClick }: UploadZoneProps) {
   return (
-    <div className="absolute contents left-[calc(50%+0.5px)] top-[calc(50%+140px)] translate-x-[-50%] translate-y-[-50%]">
-      <div className="absolute left-[calc(50%+0.5px)] size-[1000px] top-[calc(50%+140px)] translate-x-[-50%] translate-y-[-50%] animate-gradient-pulse">
+    <div className="absolute contents left-[calc(50%+0.5px)] top-[calc(50%+80px)] sm:top-[calc(50%+100px)] md:top-[calc(50%+120px)] translate-x-[-50%] translate-y-[-50%]">
+      <div className="absolute left-[calc(50%+0.5px)] w-[487px] h-[487px] sm:w-[541px] sm:h-[541px] md:w-[595px] md:h-[595px] lg:w-[649px] lg:h-[649px] top-[calc(50%+80px)] sm:top-[calc(50%+100px)] md:top-[calc(50%+120px)] translate-x-[-50%] translate-y-[-50%] animate-gradient-pulse">
         <div className="absolute inset-[-4.42%_-5.58%_-6.75%_-5.58%]">
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1260 1260">
             <g filter="url(#filter0_din_1_33)" id="Ellipse 2">

@@ -25,14 +25,14 @@ function AccordionItem({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative shrink-0 w-[272px]" data-name="Accordion Item">
+    <div className="relative shrink-0 w-full sm:w-[240px] md:w-[260px] lg:w-[272px]" data-name="Accordion Item">
       <div 
-        className="bg-[rgba(229,221,213,0.2)] box-border content-stretch flex items-center p-[25.6px] relative rounded-[12.8px] cursor-pointer hover:bg-[rgba(229,221,213,0.3)] transition-colors"
+        className="bg-[rgba(229,221,213,0.2)] box-border content-stretch flex items-center p-[18px] sm:p-[22px] md:p-[24px] lg:p-[25.6px] relative rounded-[12.8px] cursor-pointer hover:bg-[rgba(229,221,213,0.3)] transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div aria-hidden="true" className="absolute border-[#e5ddd5] border-[1.6px] border-solid inset-0 pointer-events-none rounded-[12.8px]" />
         <div className="basis-0 content-stretch flex gap-[12.8px] grow items-center min-h-px min-w-px relative shrink-0" data-name="Accordion Title">
-          <p className="basis-0 font-['Figtree:SemiBold',_sans-serif] font-semibold grow leading-[1.4] min-h-px min-w-px relative shrink-0 text-[#1e1e1e] text-[18px]">
+          <p className="basis-0 font-['Figtree:SemiBold',_sans-serif] font-semibold grow leading-[1.4] min-h-px min-w-px relative shrink-0 text-[#1e1e1e] text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]">
             {value || label}
           </p>
           <ChevronDownIcon isOpen={isOpen} />
@@ -44,7 +44,7 @@ function AccordionItem({
           {options.map((option, index) => (
             <div
               key={index}
-              className="px-[25.6px] py-[16px] hover:bg-[rgba(231,109,87,0.1)] cursor-pointer font-['Figtree:SemiBold',_sans-serif] font-semibold text-[#1e1e1e] text-[16px] transition-colors"
+              className="px-[18px] sm:px-[22px] md:px-[24px] lg:px-[25.6px] py-[14px] sm:py-[15px] md:py-[16px] hover:bg-[rgba(231,109,87,0.1)] cursor-pointer font-['Figtree:SemiBold',_sans-serif] font-semibold text-[#1e1e1e] text-[14px] sm:text-[15px] md:text-[16px] transition-colors"
               onClick={() => {
                 onChange(option);
                 setIsOpen(false);
@@ -74,7 +74,7 @@ function Frame11({
   const difficultyOptions = ['Beginner', 'Intermediate', 'Advanced', 'Expert'];
 
   return (
-    <div className="content-stretch flex gap-[46px] items-center relative shrink-0">
+    <div className="content-stretch flex flex-col sm:flex-row gap-[24px] sm:gap-[32px] md:gap-[40px] lg:gap-[46px] items-start sm:items-center relative shrink-0 w-full">
       <AccordionItem 
         label="Musical Style" 
         options={musicalStyleOptions}
@@ -127,17 +127,17 @@ function InstrumentCard({
 }) {
   return (
     <div 
-      className={`bg-gradient-to-b box-border content-stretch flex from-[rgba(231,109,87,0.1)] gap-[22px] h-[320px] items-center px-[45px] py-[18px] relative rounded-[30px] shrink-0 to-[109.2%] to-[rgba(115,115,115,0)] w-[260px] cursor-pointer transition-all duration-300 hover:scale-105 ${isSelected ? 'ring-4 ring-[#e76d57]' : ''}`}
+      className={`bg-gradient-to-b box-border content-stretch flex from-[rgba(231,109,87,0.1)] gap-[16px] sm:gap-[18px] md:gap-[20px] lg:gap-[22px] h-[240px] sm:h-[280px] md:h-[300px] lg:h-[320px] items-center px-[24px] sm:px-[32px] md:px-[38px] lg:px-[45px] py-[14px] sm:py-[16px] md:py-[17px] lg:py-[18px] relative rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[30px] shrink-0 to-[109.2%] to-[rgba(115,115,115,0)] w-full sm:w-[180px] md:w-[220px] lg:w-[260px] cursor-pointer transition-all duration-300 hover:scale-105 ${isSelected ? 'ring-4 ring-[#e76d57]' : ''}`}
       onClick={onClick}
     >
-      <div aria-hidden="true" className={`absolute border-[3px] border-solid inset-0 pointer-events-none rounded-[30px] transition-colors ${isSelected ? 'border-[#e76d57]' : 'border-[#e5ddd5]'}`} />
-      <div className="content-stretch flex flex-col gap-[22px] items-center relative shrink-0 w-full">
-        <Card className="relative shrink-0 size-[170px] flex items-center justify-center overflow-hidden border-none shadow-md">
-          <CardContent className="p-3.5 flex items-center justify-center">
+      <div aria-hidden="true" className={`absolute border-[2px] sm:border-[2.5px] md:border-[3px] border-solid inset-0 pointer-events-none rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[30px] transition-colors ${isSelected ? 'border-[#e76d57]' : 'border-[#e5ddd5]'}`} />
+      <div className="content-stretch flex flex-col gap-[16px] sm:gap-[18px] md:gap-[20px] lg:gap-[22px] items-center relative shrink-0 w-full">
+        <Card className="relative shrink-0 w-[120px] h-[120px] sm:w-[130px] sm:h-[130px] md:w-[150px] md:h-[150px] lg:w-[170px] lg:h-[170px] flex items-center justify-center overflow-hidden border-none shadow-md">
+          <CardContent className="p-2 sm:p-2.5 md:p-3 lg:p-3.5 flex items-center justify-center">
             <img alt={name} className="max-w-full max-h-full object-contain pointer-events-none" src={image} />
           </CardContent>
         </Card>
-        <p className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] relative shrink-0 text-[21px] text-black text-center">{name}</p>
+        <p className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] relative shrink-0 text-[16px] sm:text-[18px] md:text-[19px] lg:text-[21px] text-black text-center">{name}</p>
       </div>
     </div>
   );
@@ -152,14 +152,14 @@ function Frame9({ selectedInstruments, onInstrumentToggle, maxSelection }: { sel
   ];
 
   return (
-    <div className="content-start flex flex-col gap-[40px] items-start relative shrink-0 w-full">
-      <div className="flex gap-[28px] md:gap-[36px] items-start relative shrink-0 w-full justify-center">
+    <div className="content-start flex flex-col gap-[30px] sm:gap-[35px] md:gap-[40px] items-start relative shrink-0 w-full">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-[18px] sm:gap-[22px] md:gap-[26px] lg:gap-[36px] items-start relative shrink-0 w-full justify-items-center">
         {instruments.map((instrument, i) => {
           const isSelected = selectedInstruments.includes(instrument.name);
           const canSelect = isSelected || selectedInstruments.length < maxSelection;
           
           return (
-            <div key={i} className={`flex-shrink-0 ${!canSelect ? 'opacity-40 pointer-events-none' : ''}`}>
+            <div key={i} className={`w-full max-w-[260px] ${!canSelect ? 'opacity-40 pointer-events-none' : ''}`}>
               <InstrumentCard 
                 image={instrument.image} 
                 name={instrument.name}

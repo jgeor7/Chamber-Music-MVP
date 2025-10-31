@@ -3,6 +3,12 @@ import { Home, FolderOpen, User, GripVertical } from 'lucide-react';
 
 type Position = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'top-center' | 'bottom-center';
 
+interface SidebarProps {
+  onHomeClick?: () => void;
+  onProjectsClick?: () => void;
+  onProfileClick?: () => void;
+}
+
 interface SidebarItemProps {
   icon: React.ReactNode;
   label: string;
@@ -40,7 +46,7 @@ function SidebarItem({ icon, label, isExpanded, onClick, isHorizontal = false }:
   );
 }
 
-export default function Sidebar() {
+export default function Sidebar({ onHomeClick, onProjectsClick, onProfileClick }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [position, setPosition] = useState<Position>('top-left');
   const [isDragging, setIsDragging] = useState(false);
@@ -51,15 +57,15 @@ export default function Sidebar() {
   const isHorizontal = position === 'top-center' || position === 'bottom-center';
 
   const handleHomeClick = () => {
-    console.log('Home clicked');
+    onHomeClick?.();
   };
 
   const handleProjectsClick = () => {
-    console.log('Projects clicked');
+    onProjectsClick?.();
   };
 
   const handleProfileClick = () => {
-    console.log('Profile clicked');
+    onProfileClick?.();
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {

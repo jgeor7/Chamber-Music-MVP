@@ -29,15 +29,15 @@ export function AnimatedTitle() {
   }, []);
 
   return (
-    <div className="absolute content-stretch flex gap-[20px] h-[60px] items-center left-[calc(50%-0.493px)] top-[40px] translate-x-[-50%]">
+    <div className="absolute content-stretch flex gap-[12px] sm:gap-[16px] md:gap-[20px] h-[36px] sm:h-[48px] md:h-[56px] lg:h-[60px] items-center left-1/2 top-[30px] sm:top-[35px] md:top-[40px] -translate-x-1/2 px-4">
       <p 
-        className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] text-[#201315] text-[48px] whitespace-nowrap"
+        className="font-['Figtree:Bold',_sans-serif] font-bold leading-[normal] text-[#201315] text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] text-center"
       >
         {displayText}
       </p>
       {showLightning && (
         <div 
-          className="h-[60px] relative shrink-0 w-[44px] animate-lightning" 
+          className="h-[36px] sm:h-[48px] md:h-[56px] lg:h-[60px] relative shrink-0 w-[26px] sm:w-[32px] md:w-[38px] lg:w-[44px] animate-lightning" 
           data-name="lightning_component"
         >
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 72 97">
