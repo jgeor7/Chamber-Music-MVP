@@ -78,7 +78,7 @@ A modern web application for generating harmonies from MIDI/XML files with intel
 npm run build
 ```
 
-The built files will be in the `dist/` directory.
+The built files will be in the `build/` directory.
 
 ## 📁 Project Structure
 
